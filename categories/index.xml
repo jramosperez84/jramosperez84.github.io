@@ -4,8 +4,6 @@
     <title>Categories on Un bruto programando</title>
     <link>https://jramosperez84.github.io/categories/</link>
     <description>Recent content in Categories on Un bruto programando</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>youremail@domain.com (Some Person)</managingEditor>
-    <webMaster>youremail@domain.com (Some Person)</webMaster><atom:link href="https://jramosperez84.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://jramosperez84.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

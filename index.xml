@@ -5,13 +5,21 @@
     <link>https://jramosperez84.github.io/</link>
     <description>Recent content on Un bruto programando</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>youremail@domain.com (Some Person)</managingEditor>
-    <webMaster>youremail@domain.com (Some Person)</webMaster><atom:link href="https://jramosperez84.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Apr 2023 21:11:30 +0100</lastBuildDate><atom:link href="https://jramosperez84.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mi Primer Post</title>
+      <link>https://jramosperez84.github.io/post/mi-primer-post/</link>
+      <pubDate>Sun, 16 Apr 2023 21:11:30 +0100</pubDate>
+      
+      <guid>https://jramosperez84.github.io/post/mi-primer-post/</guid>
+      <description>Contenido de prueba Este es un un texto de prueba</description>
+    </item>
+    
     <item>
       <title>About me</title>
       <link>https://jramosperez84.github.io/page/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>youremail@domain.com (Some Person)</author>
+      
       <guid>https://jramosperez84.github.io/page/about/</guid>
       <description>My name is Inigo Montoya. I have the following qualities:
 I rock a great mustache I&amp;rsquo;m extremely loyal to my family What else do you need?
