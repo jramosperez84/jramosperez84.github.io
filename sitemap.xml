@@ -2,13 +2,18 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
+      <loc>http://localhost:1313/python_builder/</loc><lastmod>2024-05-09T15:14:50&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/</loc><lastmod>2024-05-09T15:14:50&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/projects/</loc><lastmod>2024-05-09T15:09:30&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/archives/</loc><lastmod>2024-05-09T15:05:00&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/tags/archlinux/</loc><lastmod>2024-05-08T12:12:29&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/categories/archlinux/</loc><lastmod>2024-05-08T12:12:29&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/categories/</loc><lastmod>2024-05-08T12:12:29&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/posts/8734126/</loc><lastmod>2024-05-08T12:12:29&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/tags/linux/</loc><lastmod>2024-05-08T12:12:29&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/categories/linux/</loc><lastmod>2024-05-08T12:12:29&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/posts/</loc><lastmod>2024-05-08T12:12:29&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/tags/</loc><lastmod>2024-05-08T12:12:29&#43;01:00</lastmod></url><url>
-      <loc>http://localhost:1313/</loc><lastmod>2024-05-08T12:12:29&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/tags/off-topic/</loc><lastmod>2024-05-07T13:34:57&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/categories/off-topic/</loc><lastmod>2024-05-07T13:34:57&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/posts/b3470b2/</loc><lastmod>2024-05-07T13:34:57&#43;01:00</lastmod></url></urlset>
