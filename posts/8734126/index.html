@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="es">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Instalar AppArmor en Archlinux - vm_jorge</title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="📶 Nivel de dificultad MEDIO
+¿Que es AppArmor y porque lo necesito? Definicion de Wikipedia: AppArmor (&ldquo;Application Armor&rdquo;) es un módulo de seguridad del kernel Linux que permite al administrador del sistema restringir las capacidades de un programa. Para definir las restricciones asocia a cada programa un perfil de seguridad.
+¿Pero para que lo necesitaria yo, si no soy Sysadmin?
+AppArmor ayuda a prevenir que las aplicaciones accedan a recursos del sistema que no necesitan para su funcionamiento normal, lo cual puede limitar el daño potencial en caso de que una aplicación se vea comprometida por un ataque malicioso." /><meta name="keywords" content='linux' />
+  <meta itemprop="name" content="Instalar AppArmor en Archlinux">
+  <meta itemprop="description" content="📶 Nivel de dificultad MEDIO
+¿Que es AppArmor y porque lo necesito? Definicion de Wikipedia: AppArmor (&ldquo;Application Armor&rdquo;) es un módulo de seguridad del kernel Linux que permite al administrador del sistema restringir las capacidades de un programa. Para definir las restricciones asocia a cada programa un perfil de seguridad.
+¿Pero para que lo necesitaria yo, si no soy Sysadmin?
+AppArmor ayuda a prevenir que las aplicaciones accedan a recursos del sistema que no necesitan para su funcionamiento normal, lo cual puede limitar el daño potencial en caso de que una aplicación se vea comprometida por un ataque malicioso.">
+  <meta itemprop="datePublished" content="2024-05-08T12:12:29+01:00">
+  <meta itemprop="dateModified" content="2024-05-08T12:12:29+01:00">
+  <meta itemprop="wordCount" content="832">
+  <meta itemprop="keywords" content="linux"><meta property="og:url" content="http://localhost:1313/posts/8734126/">
+  <meta property="og:site_name" content="vm_jorge">
+  <meta property="og:title" content="Instalar AppArmor en Archlinux">
+  <meta property="og:description" content="📶 Nivel de dificultad MEDIO
+¿Que es AppArmor y porque lo necesito? Definicion de Wikipedia: AppArmor (“Application Armor”) es un módulo de seguridad del kernel Linux que permite al administrador del sistema restringir las capacidades de un programa. Para definir las restricciones asocia a cada programa un perfil de seguridad.
+¿Pero para que lo necesitaria yo, si no soy Sysadmin?
+AppArmor ayuda a prevenir que las aplicaciones accedan a recursos del sistema que no necesitan para su funcionamiento normal, lo cual puede limitar el daño potencial en caso de que una aplicación se vea comprometida por un ataque malicioso.">
+  <meta property="og:locale" content="es">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-05-08T12:12:29+01:00">
+    <meta property="article:modified_time" content="2024-05-08T12:12:29+01:00">
+    <meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Instalar AppArmor en Archlinux">
+<meta name="twitter:description" content="📶 Nivel de dificultad MEDIO
+¿Que es AppArmor y porque lo necesito? Definicion de Wikipedia: AppArmor (&ldquo;Application Armor&rdquo;) es un módulo de seguridad del kernel Linux que permite al administrador del sistema restringir las capacidades de un programa. Para definir las restricciones asocia a cada programa un perfil de seguridad.
+¿Pero para que lo necesitaria yo, si no soy Sysadmin?
+AppArmor ayuda a prevenir que las aplicaciones accedan a recursos del sistema que no necesitan para su funcionamiento normal, lo cual puede limitar el daño potencial en caso de que una aplicación se vea comprometida por un ataque malicioso.">
+<meta name="application-name" content="vm_jorge">
+<meta name="apple-mobile-web-app-title" content="vm_jorge"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/penguin.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/8734126/" /><link rel="prev" href="http://localhost:1313/posts/b3470b2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Instalar AppArmor en Archlinux",
+    "inLanguage": "es",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/8734126\/"
+    },"genre": "posts","keywords": "linux","wordcount":  832 ,
+    "url": "http:\/\/localhost:1313\/posts\/8734126\/","datePublished": "2024-05-08T12:12:29+01:00","dateModified": "2024-05-08T12:12:29+01:00","license": "vm_jorge","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "vm_jorge"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="vm_jorge"><img loading="lazy" src="/images/penguin.png" alt="vm_jorge" data-title="vm_jorge" class="logo" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span class="header-title-text">vm_jorge</span></a><span class="header-subtitle">En mi maquina funciona...</span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                title="Archivo de entradas"
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archivo</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                title="Categorias"
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categorias</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                title="Etiquetas"
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Etiquetas</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/projects/"
+                
+                
+              ><i class="fa-solid fa-diagram-project fa-fw fa-sm" aria-hidden="true"></i> Proyectos</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Cambia el tema">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="vm_jorge"><img loading="lazy" src="/images/penguin.png" alt="/images/penguin.png" data-title="/images/penguin.png" class="logo" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span class="header-title-text">vm_jorge</span></a><span class="header-subtitle">En mi maquina funciona...</span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  title="Archivo de entradas"
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archivo</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  title="Categorias"
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categorias</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  title="Etiquetas"
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Etiquetas</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/projects/"
+                  
+                  
+                ><i class="fa-solid fa-diagram-project fa-fw fa-sm" aria-hidden="true"></i> Proyectos</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Cambia el tema"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=""></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Instalar AppArmor en Archlinux</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      vm_jorge</span></span><span class="post-included-in">&nbsp;incluido en <a href="/categories/linux/" class="post-category" title="Categoría - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div><div class="post-meta-line"><span title="publicado el 2024-05-08 12:12:29"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-05-08">2024-05-08</time></span>&nbsp;<span title="832 palabras"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>Aproximadamente 900 palabras</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>4 minutos</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contenido</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#que-es-apparmor-y-porque-lo-necesito">¿Que es AppArmor y porque lo necesito?</a></li>
+        <li><a href="#1-instalar-y-habilitar-apparmor">1. Instalar y habilitar apparmor</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-comprobar-si-apparmor-figura-en-el-parametro-lsm-del-kernel">2. Comprobar si apparmor figura en el parametro lsm del kernel</a></li>
+    <li><a href="#3-modificar-el-gestor-de-arranque">3. Modificar el gestor de arranque</a></li>
+    <li><a href="#4-comprobar-el-estado-de-apparmor">4. Comprobar el estado de Apparmor</a></li>
+    <li><a href="#5-audit">5. Audit</a></li>
+    <li><a href="#6-recibe-notificaciones-de-escritorio-sobre-acciones-denegadas">6. Recibe notificaciones de escritorio sobre acciones DENEGADAS</a>
+      <ul>
+        <li><a href="#tip">TIP</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><blockquote class="text-warning"><p>📶 <strong>Nivel de dificultad</strong>
+MEDIO</p>
+</blockquote>
+<hr>
+<h3 id="que-es-apparmor-y-porque-lo-necesito" class="heading-element"><span>¿Que es AppArmor y porque lo necesito?</span>
+  <a href="#que-es-apparmor-y-porque-lo-necesito" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><strong>Definicion de Wikipedia:</strong> AppArmor (&ldquo;Application Armor&rdquo;) es un módulo de seguridad del kernel Linux que permite al administrador del sistema restringir las capacidades de un programa. Para definir las restricciones asocia a cada programa un perfil de seguridad.</p>
+<p><em>¿Pero para que lo necesitaria yo, si no soy Sysadmin?</em></p>
+<p>AppArmor ayuda a prevenir que las aplicaciones accedan a recursos del sistema que no necesitan para su funcionamiento normal, lo cual puede limitar el daño potencial en caso de que una aplicación se vea comprometida por un ataque malicioso.</p>
+<p>Archlinux no instala por defecto este módulo, por lo que debes hacerlo de forma manual, <strong>necesitarás tocar archivos de configuración del gestor de arranque, entre otros.</strong> Por lo que si vas a realizar esta instalación será conveniente hacer un respaldo de los archivos importantes mediante un <code>cp archivo archivo.backup</code>.</p>
+<h3 id="1-instalar-y-habilitar-apparmor" class="heading-element"><span>1. Instalar y habilitar apparmor</span>
+  <a href="#1-instalar-y-habilitar-apparmor" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo pacman -S apparmor
+</span></span><span style="display:flex;"><span>sudo systemctl enable --now apparmor.service</span></span></code></pre></div><h2 id="2-comprobar-si-apparmor-figura-en-el-parametro-lsm-del-kernel" class="heading-element"><span>2. Comprobar si apparmor figura en el parametro lsm del kernel</span>
+  <a href="#2-comprobar-si-apparmor-figura-en-el-parametro-lsm-del-kernel" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>zgrep CONFIG_LSM<span style="color:#f92672">=</span> /proc/config.gz</span></span></code></pre></div><p>Otra manera de comprobarlo sería con el siguiente comando:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /sys/kernel/security/lsm</span></span></code></pre></div><p>Deberíamos obtener una salida como esta: <code>CONFIG_LSM=&quot;landlock,lockdown,yama,integrity,bpf&quot;</code>
+o en el caso del segundo comando, <code>capability,landlock,lockdown,yama,bpf%</code></p>
+<p>Según la wiki de Archlinux <code>capability</code> deberia ser omitido por <code>lsm=</code>, pero siempre es incluido de forma automática.</p>
+<ul>
+<li><em>Evidentemente, no obtendremos <code>apparmor</code> en la salida debido a que aún no hemos editado el archivo de configuración de grub para añadir una modificación al parámetro lsm del kernel, e indicarle el orden de inicialización de los módulos de seguridad de Linux</em></li>
+</ul>
+<h2 id="3-modificar-el-gestor-de-arranque" class="heading-element"><span>3. Modificar el gestor de arranque</span>
+  <a href="#3-modificar-el-gestor-de-arranque" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>El archivo a modificar se encuentra en la ruta <code>/etc/default</code> se trata del archivo <code>grub</code>. En el podemos modificar desde la entrada por defecto a la hora de arrancar el equipo, hasta la resolución de pantalla del gestor de arranque. Pero he de suponer que esto ya lo sabíais.</p>
+<p>La línea en cuestión que debemos modificar es:
+<code>GRUB_CMDLINE_LINUX_DEFAULT=&quot;loglevel=3&quot;</code> que evidentemente tendrá el aspecto citado, en caso de no haber sido modificada y se encontrará en la línea 6 del archivo.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo vim /etc/default/grub
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Una vez dentro del archivo modificamos la línea para que se muestre del siguiente modo:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GRUB_CMDLINE_LINUX_DEFAULT<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;loglevel=3 lsm=landlock,lockdown,yama,integrity,apparmor,bpf&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Una vez hecha la modificación guardamos los cambios y ejecutamos el siguiente comando:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo grub-mkconfig -o /boot/grub/grub.cfg</span></span></code></pre></div><h2 id="4-comprobar-el-estado-de-apparmor" class="heading-element"><span>4. Comprobar el estado de Apparmor</span>
+  <a href="#4-comprobar-el-estado-de-apparmor" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aa-enabled
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># La salida que obtendremos será:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>No; desactivado durante el arranque.</span></span></code></pre></div><p>Para que Apparmor entre en funcionamiento debemos reiniciar el equipo en este punto.
+Una vez reiniciado el equipo la salida del comando <code>aa-enabled</code> debería ser <code>Si</code>, pero por alguna extraña razón se mostrará <code>S?</code>. Lo que significará que el módulo apparmor se ha cargado durante el arranque.</p>
+<p><em>Podemos obtener más información sobre el estado de apparmor con el comando <code>sudo aa-status</code>, obtendremos una salida similar a esta:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>apparmor module is loaded.
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">44</span> profiles are loaded.
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">44</span> profiles are in enforce mode.
+</span></span><span style="display:flex;"><span> ...
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> profiles are in complain mode.
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> processes have profiles defined.
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> processes are in enforce mode.
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> processes are in complain mode.
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> processes are unconfined but have a profile defined.</span></span></code></pre></div><h2 id="5-audit" class="heading-element"><span>5. Audit</span>
+  <a href="#5-audit" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>El demonio de notificaciones muestra notificaciones de escritorio cada vez que AppArmor deniega el acceso a un programa. Para iniciar automáticamente el demonio aa-notify al iniciar sesión, sigue los pasos a continuación:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Debemos volver a editar el archivo de configuración de GRUB, la línea que habiamos editado anteriormente en el paso 3.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo vim /etc/default/grub
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Añadimos el parámentro audit=1, quedando la línea del siguiente modo:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>GRUB_CMDLINE_LINUX_DEFAULT<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;loglevel=3 lsm=landlock,lockdown,yama,integrity,apparmor,bpf audit=1&#34;</span></span></span></code></pre></div><p>El paquete <code>audit</code> es requerido por <code>dbus, systemd...</code> entre otros, por lo que en una instalación habitual de Archlinux se instala por defecto. Lo único que debemos hacer es habilitar su inicio durante el arranque:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl enable --now auditd.service
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Con el parámetro --now realizamos a la vez un start.</span></span></span></code></pre></div><p>Creamos el grupo <code>audit</code> y añadimos nuestro usuario.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo groupadd -r audit <span style="color:#f92672">&amp;&amp;</span> sudo gpasswd -a $USER audit</span></span></code></pre></div><p>En el siguiente paso debes editar el archivo de configuración de <code>audit</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo vim /etc/audit/auditd.conf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Buscamos la línea &#39;log_group = root&#39; y la modificamos para que quede del siguiente modo:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>log_group <span style="color:#f92672">=</span> audit</span></span></code></pre></div><h2 id="6-recibe-notificaciones-de-escritorio-sobre-acciones-denegadas" class="heading-element"><span>6. Recibe notificaciones de escritorio sobre acciones DENEGADAS</span>
+  <a href="#6-recibe-notificaciones-de-escritorio-sobre-acciones-denegadas" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>Para este último paso necesitaremos instalar dos dependencias necesarias para ejecutar <code>aa-notify</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo pacman -S python-notify2 python-psutil
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ahora crearemos un desktop launcher, asegúrate de que la ruta ~/.config/autostart/ existe en tu directorio $HOMEdraft</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>touch ~/.config/autostart/apparmor-notify.desktop
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vim ~/.config/autostart/apparmor-notify.desktop
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Añade el siguiente contenido al documento:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>Desktop Entry<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Type<span style="color:#f92672">=</span>Application
+</span></span><span style="display:flex;"><span>Name<span style="color:#f92672">=</span>AppArmor Notify
+</span></span><span style="display:flex;"><span>Comment<span style="color:#f92672">=</span>Receive on screen notifications of AppArmor denials
+</span></span><span style="display:flex;"><span>TryExec<span style="color:#f92672">=</span>aa-notify
+</span></span><span style="display:flex;"><span>Exec<span style="color:#f92672">=</span>aa-notify -p -s <span style="color:#ae81ff">1</span> -w <span style="color:#ae81ff">60</span> -f /var/log/audit/audit.log
+</span></span><span style="display:flex;"><span>StartupNotify<span style="color:#f92672">=</span>false
+</span></span><span style="display:flex;"><span>NoDisplay<span style="color:#f92672">=</span>true</span></span></code></pre></div><p>Finalmente reinicia. Para comprobar que este paso se ha realizado correctamente, deberías poder ejecutar en la terminal el comando <code>aa-notify</code> con tu usuario si necesidad de utilizar <code>sudo</code>.</p>
+<h3 id="tip" class="heading-element"><span>TIP</span>
+  <a href="#tip" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Acelera el inicio de AppArmor mediante la caché de perfiles, para ello debes modificar el documento <code>parser.conf</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo vim /etc/apparmor/parser.conf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Localiza la linea #write-cache, y dejala de la siguiente forma:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>write-cache</span></span></code></pre></div><ul>
+<li><em>Guarda los cambios y reinicia el equipo.</em></li>
+</ul>
+<hr>
+<blockquote>
+<p> <strong>FUENTES</strong></p>
+<p><a href="https://es.wikipedia.org/wiki/AppArmor"target="_blank" rel="external nofollow noopener noreferrer">Wikipedia</a></p>
+<p><a href="https://wiki.archlinux.org/title/AppArmor"target="_blank" rel="external nofollow noopener noreferrer">Wiki de Archlinux</a></p>
+</blockquote>
+<hr>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Actualizado el 2024-05-08 12:12:29">Actualizado el 2024-05-08&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Compartir en Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/8734126/" data-title="Instalar AppArmor en Archlinux" data-hashtags="linux"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Compartir en Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/8734126/" data-hashtag="linux"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Compartir en 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/8734126/" data-title="Instalar AppArmor en Archlinux"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="Etiquetas - Linux">Linux</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Regresar</a></span>&nbsp;|&nbsp;<span><a href="/">Inicio</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/b3470b2/" class="post-nav-item" rel="prev" title="Presentación"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Presentación</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contenido"><h2 class="toc-title">Contenido&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line custom">vm_jorge</div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning"></div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copiar al portapapeles","editLockTitle":"Bloquear bloque de código editable","editUnLockTitle":"Desbloquear bloque de código editable","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"De acuerdo","link":"Aprende más","message":"Este sitio web utiliza Cookies para mejorar su experiencia."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"version":"v0.3.6"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
