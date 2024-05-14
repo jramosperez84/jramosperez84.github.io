@@ -10,7 +10,7 @@
 <meta name="description" content="El contenido de esta publicación está obtenido prácticamente en su totalidad de la documentación en inglés de la Wiki de Archlinux y la web oficial de Firejail. Este &ldquo;blog&rdquo; no brinda soporte, ni es un referente de como se deben hacer las cosas. Simplemente, comparto mis experiencias y como me ha funcionado a mí. (De ahí el subtítulo, &ldquo;En mí máquina funciona&hellip;&rdquo;)
 REPITO, esto solo son textos basados en mis experiencias, cualquier duda que no sea aclarada aquí te invito a consultarla en documentaciones oficiales." /><meta name="keywords" content='Linux, Seguridad' />
   <meta itemprop="name" content="Firejail, la jaula para apps">
-  <meta itemprop="description" content="El contenido de esta publicación está obtenido prácticamente en su totalidad de la documentación en inglés de la Wiki de Archlinux y la web oficial de Firejail. Este &ldquo;blog&rdquo; no brinda soporte, ni es un referente de como se deben hacer las cosas. Simplemente, comparto mis experiencias y como me ha funcionado a mí. (De ahí el subtítulo, &ldquo;En mí máquina funciona&hellip;&rdquo;)
+  <meta itemprop="description" content="El contenido de esta publicación está obtenido prácticamente en su totalidad de la documentación en inglés de la Wiki de Archlinux y la web oficial de Firejail. Este “blog” no brinda soporte, ni es un referente de como se deben hacer las cosas. Simplemente, comparto mis experiencias y como me ha funcionado a mí. (De ahí el subtítulo, “En mí máquina funciona…”)
 REPITO, esto solo son textos basados en mis experiencias, cualquier duda que no sea aclarada aquí te invito a consultarla en documentaciones oficiales.">
   <meta itemprop="datePublished" content="2024-05-10T11:35:47+01:00">
   <meta itemprop="dateModified" content="2024-05-10T11:35:47+01:00">
@@ -27,8 +27,10 @@ REPITO, esto solo son textos basados en mis experiencias, cualquier duda que no 
     <meta property="article:modified_time" content="2024-05-10T11:35:47+01:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Seguridad">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Firejail, la jaula para apps">
-<meta name="twitter:description" content="El contenido de esta publicación está obtenido prácticamente en su totalidad de la documentación en inglés de la Wiki de Archlinux y la web oficial de Firejail. Este &ldquo;blog&rdquo; no brinda soporte, ni es un referente de como se deben hacer las cosas. Simplemente, comparto mis experiencias y como me ha funcionado a mí. (De ahí el subtítulo, &ldquo;En mí máquina funciona&hellip;&rdquo;)
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Firejail, la jaula para apps">
+  <meta name="twitter:description" content="El contenido de esta publicación está obtenido prácticamente en su totalidad de la documentación en inglés de la Wiki de Archlinux y la web oficial de Firejail. Este “blog” no brinda soporte, ni es un referente de como se deben hacer las cosas. Simplemente, comparto mis experiencias y como me ha funcionado a mí. (De ahí el subtítulo, “En mí máquina funciona…”)
 REPITO, esto solo son textos basados en mis experiencias, cualquier duda que no sea aclarada aquí te invito a consultarla en documentaciones oficiales.">
 <meta name="application-name" content="vm_jorge">
 <meta name="apple-mobile-web-app-title" content="vm_jorge"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/penguin.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/05a3ac3/" /><link rel="prev" href="http://localhost:1313/python_builder/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
@@ -180,7 +182,7 @@ DIFICIL</p>
 </h2><blockquote>
 <p><strong>Web oficial de Firejail:</strong> Firejail es un programa SUID (Set User ID) que reduce el riesgo de violaciones de seguridad al restringir el entorno de ejecución de aplicaciones que no son de confianza utilizando espacios de nombres de Linux y seccomp-bpf. Permite que un proceso y todos sus descendientes tengan su propia vista privada de los recursos del kernel compartidos globalmente, como la pila de red, la tabla de procesos y la tabla de montaje.</p>
 </blockquote>
-<p>En definitiva una cajita de mie&hellip; donde podemos ejecutar nuestras porquerías minimizando el riesgo de que, lo que ejecutes, haga cosas indebidas en tu sistema operativo. <em>Pero como bien dice la wiki de Archlinux, ejecutar código inseguro, nunca es seguro y un sandboxing no va a cambiar esto.</em></p>
+<p>En definitiva una cajita de mie&hellip; donde podemos ejecutar nuestras porquerías minimizando el riesgo de que, lo que ejecutes haga cosas indebidas en tu sistema operativo. <em>Pero como bien dice la wiki de Archlinux, ejecutar código inseguro nunca es seguro y un sandboxing no va a cambiar esto.</em></p>
 <h2 id="su-utilidad" class="heading-element"><span>Su utilidad</span>
   <a href="#su-utilidad" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
