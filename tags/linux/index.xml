@@ -3,7 +3,16 @@
     <title>Linux - Etiqueta - vm_jorge</title>
     <link>http://localhost:1313/tags/linux/</link>
     <description>Linux - Etiqueta | vm_jorge</description>
-    <generator>Hugo -- gohugo.io</generator><language>es</language><copyright>vm_jorge</copyright><lastBuildDate>Wed, 08 May 2024 12:12:29 &#43;0100</lastBuildDate><atom:link href="http://localhost:1313/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <generator>Hugo -- gohugo.io</generator><language>es</language><copyright>vm_jorge</copyright><lastBuildDate>Fri, 10 May 2024 11:35:47 &#43;0100</lastBuildDate><atom:link href="http://localhost:1313/tags/linux/" rel="self" type="application/rss+xml" /><item>
+  <title>Firejail, la jaula para apps</title>
+  <link>http://localhost:1313/posts/05a3ac3/</link>
+  <pubDate>Fri, 10 May 2024 11:35:47 &#43;0100</pubDate>
+  <author>Autor</author>
+  <guid>http://localhost:1313/posts/05a3ac3/</guid>
+  <description><![CDATA[El contenido de esta publicación está obtenido prácticamente en su totalidad de la documentación en inglés de la Wiki de Archlinux y la web oficial de Firejail. Este &ldquo;blog&rdquo; no brinda soporte, ni es un referente de como se deben hacer las cosas. Simplemente, comparto mis experiencias y como me ha funcionado a mí. (De ahí el subtítulo, &ldquo;En mí máquina funciona&hellip;&rdquo;)
+REPITO, esto solo son textos basados en mis experiencias, cualquier duda que no sea aclarada aquí te invito a consultarla en documentaciones oficiales.]]></description>
+</item>
+<item>
   <title>Instalar AppArmor en Archlinux</title>
   <link>http://localhost:1313/posts/8734126/</link>
   <pubDate>Wed, 08 May 2024 12:12:29 &#43;0100</pubDate>

@@ -1,9 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>Todo Artículos - vm_jorge</title>
-    <link>http://localhost:1313/posts/</link>
-    <description>Todo Artículos | vm_jorge</description>
-    <generator>Hugo -- gohugo.io</generator><language>es</language><copyright>vm_jorge</copyright><lastBuildDate>Fri, 10 May 2024 11:35:47 &#43;0100</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Seguridad - Categoría - vm_jorge</title>
+    <link>http://localhost:1313/categories/seguridad/</link>
+    <description>Seguridad - Categoría | vm_jorge</description>
+    <generator>Hugo -- gohugo.io</generator><language>es</language><copyright>vm_jorge</copyright><lastBuildDate>Fri, 10 May 2024 11:35:47 &#43;0100</lastBuildDate><atom:link href="http://localhost:1313/categories/seguridad/" rel="self" type="application/rss+xml" /><item>
   <title>Firejail, la jaula para apps</title>
   <link>http://localhost:1313/posts/05a3ac3/</link>
   <pubDate>Fri, 10 May 2024 11:35:47 &#43;0100</pubDate>
@@ -22,16 +22,6 @@ REPITO, esto solo son textos basados en mis experiencias, cualquier duda que no 
 ¿Que es AppArmor y porque lo necesito? Definicion de Wikipedia: AppArmor (&ldquo;Application Armor&rdquo;) es un módulo de seguridad del kernel Linux que permite al administrador del sistema restringir las capacidades de un programa. Para definir las restricciones asocia a cada programa un perfil de seguridad.
 ¿Pero para que lo necesitaria yo, si no soy Sysadmin?
 AppArmor ayuda a prevenir que las aplicaciones accedan a recursos del sistema que no necesitan para su funcionamiento normal, lo cual puede limitar el daño potencial en caso de que una aplicación se vea comprometida por un ataque malicioso.]]></description>
-</item>
-<item>
-  <title>Presentación</title>
-  <link>http://localhost:1313/posts/b3470b2/</link>
-  <pubDate>Tue, 07 May 2024 13:34:57 &#43;0100</pubDate>
-  <author>Autor</author>
-  <guid>http://localhost:1313/posts/b3470b2/</guid>
-  <description><![CDATA[Hola curiosos 👋, mi nombre es Jorge, actualmente estudio 📚 DAM (Desarrollo de Aplicaciones Multiplataforma) en el centro de enseñanza 🏫 IFP Innovación en Formación Profesional y lo hago a distancia porque debo compatibilizarlo con mi trabajo.
-Oficialmente estudio Sistemas, Java, C++, Programación orientada a objetos, Bases de datos (por ahora MySQL), Lenguajes de marcas como xml, html y css.
-Por otra parte, trato de complementar lo aprendido, en platafornas online, documentaciones oficiales, Youtube, etc.]]></description>
 </item>
 </channel>
 </rss>

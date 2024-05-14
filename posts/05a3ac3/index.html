@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="es">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Firejail, La Jaula Para Apps - vm_jorge</title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="El contenido de esta publicación está obtenido prácticamente en su totalidad de la documentación en inglés de la Wiki de Archlinux y la web oficial de Firejail. Este &ldquo;blog&rdquo; no brinda soporte, ni es un referente de como se deben hacer las cosas. Simplemente, comparto mis experiencias y como me ha funcionado a mí. (De ahí el subtítulo, &ldquo;En mí máquina funciona&hellip;&rdquo;)
+REPITO, esto solo son textos basados en mis experiencias, cualquier duda que no sea aclarada aquí te invito a consultarla en documentaciones oficiales." /><meta name="keywords" content='Linux, Seguridad' />
+  <meta itemprop="name" content="Firejail, la jaula para apps">
+  <meta itemprop="description" content="El contenido de esta publicación está obtenido prácticamente en su totalidad de la documentación en inglés de la Wiki de Archlinux y la web oficial de Firejail. Este &ldquo;blog&rdquo; no brinda soporte, ni es un referente de como se deben hacer las cosas. Simplemente, comparto mis experiencias y como me ha funcionado a mí. (De ahí el subtítulo, &ldquo;En mí máquina funciona&hellip;&rdquo;)
+REPITO, esto solo son textos basados en mis experiencias, cualquier duda que no sea aclarada aquí te invito a consultarla en documentaciones oficiales.">
+  <meta itemprop="datePublished" content="2024-05-10T11:35:47+01:00">
+  <meta itemprop="dateModified" content="2024-05-10T11:35:47+01:00">
+  <meta itemprop="wordCount" content="3328">
+  <meta itemprop="keywords" content="Linux,Seguridad"><meta property="og:url" content="http://localhost:1313/posts/05a3ac3/">
+  <meta property="og:site_name" content="vm_jorge">
+  <meta property="og:title" content="Firejail, la jaula para apps">
+  <meta property="og:description" content="El contenido de esta publicación está obtenido prácticamente en su totalidad de la documentación en inglés de la Wiki de Archlinux y la web oficial de Firejail. Este “blog” no brinda soporte, ni es un referente de como se deben hacer las cosas. Simplemente, comparto mis experiencias y como me ha funcionado a mí. (De ahí el subtítulo, “En mí máquina funciona…”)
+REPITO, esto solo son textos basados en mis experiencias, cualquier duda que no sea aclarada aquí te invito a consultarla en documentaciones oficiales.">
+  <meta property="og:locale" content="es">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-05-10T11:35:47+01:00">
+    <meta property="article:modified_time" content="2024-05-10T11:35:47+01:00">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Seguridad">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Firejail, la jaula para apps">
+<meta name="twitter:description" content="El contenido de esta publicación está obtenido prácticamente en su totalidad de la documentación en inglés de la Wiki de Archlinux y la web oficial de Firejail. Este &ldquo;blog&rdquo; no brinda soporte, ni es un referente de como se deben hacer las cosas. Simplemente, comparto mis experiencias y como me ha funcionado a mí. (De ahí el subtítulo, &ldquo;En mí máquina funciona&hellip;&rdquo;)
+REPITO, esto solo son textos basados en mis experiencias, cualquier duda que no sea aclarada aquí te invito a consultarla en documentaciones oficiales.">
+<meta name="application-name" content="vm_jorge">
+<meta name="apple-mobile-web-app-title" content="vm_jorge"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/penguin.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/05a3ac3/" /><link rel="prev" href="http://localhost:1313/python_builder/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Firejail, la jaula para apps",
+    "inLanguage": "es",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/05a3ac3\/"
+    },"genre": "posts","keywords": "Linux, Seguridad","wordcount":  3328 ,
+    "url": "http:\/\/localhost:1313\/posts\/05a3ac3\/","datePublished": "2024-05-10T11:35:47+01:00","dateModified": "2024-05-10T11:35:47+01:00","license": "vm_jorge","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "vm_jorge"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="vm_jorge"><img loading="lazy" src="/images/penguin.png" alt="vm_jorge" data-title="vm_jorge" class="logo" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span class="header-title-text">vm_jorge</span></a><span class="header-subtitle">En mi maquina funciona...</span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                title="Archivo de entradas"
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archivo</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                title="Categorias"
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categorias</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                title="Etiquetas"
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Etiquetas</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/projects/"
+                
+                
+              ><i class="fa-solid fa-diagram-project fa-fw fa-sm" aria-hidden="true"></i> Proyectos</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Cambia el tema">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="vm_jorge"><img loading="lazy" src="/images/penguin.png" alt="/images/penguin.png" data-title="/images/penguin.png" class="logo" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span class="header-title-text">vm_jorge</span></a><span class="header-subtitle">En mi maquina funciona...</span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  title="Archivo de entradas"
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archivo</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  title="Categorias"
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categorias</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  title="Etiquetas"
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Etiquetas</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/projects/"
+                  
+                  
+                ><i class="fa-solid fa-diagram-project fa-fw fa-sm" aria-hidden="true"></i> Proyectos</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Cambia el tema"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=""></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Firejail, La Jaula Para Apps</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      vm_jorge</span></span><span class="post-included-in">&nbsp;incluido en <a href="/categories/linux/" class="post-category" title="Categoría - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/seguridad/" class="post-category" title="Categoría - Seguridad"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Seguridad</a></span></div><div class="post-meta-line"><span title="publicado el 2024-05-10 11:35:47"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-05-10">2024-05-10</time></span>&nbsp;<span title="3328 palabras"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>Aproximadamente 3400 palabras</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>16 minutos</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contenido</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#que-es-firejail">¿Que es Firejail?</a></li>
+    <li><a href="#su-utilidad">Su utilidad</a></li>
+    <li><a href="#instalación">Instalación</a></li>
+    <li><a href="#uso-básico-principales-inconvenientes-y-configuración">Uso básico, principales inconvenientes y configuración</a>
+      <ul>
+        <li><a href="#uso-básico">Uso básico</a>
+          <ul>
+            <li><a href="#configuraciones-previas">Configuraciones previas</a></li>
+            <li><a href="#tip">TIP</a></li>
+          </ul>
+        </li>
+        <li><a href="#inconvenientes">Inconvenientes</a></li>
+        <li><a href="#configuración">Configuración</a>
+          <ul>
+            <li><a href="#configuración-firejailconf">Configuración firejail.conf</a></li>
+            <li><a href="#gestionar-perfiles">Gestionar perfiles</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#conclusiones-y-cierre">Conclusiones y cierre</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><blockquote class="text-danger"><p>El contenido de esta publicación está obtenido prácticamente en su totalidad de la documentación en inglés de la Wiki de Archlinux y la web oficial de Firejail. Este &ldquo;blog&rdquo; no brinda soporte, ni es un referente de como se deben hacer las cosas. Simplemente, comparto mis experiencias y como me ha funcionado a mí. (De ahí el subtítulo, &ldquo;En mí máquina funciona&hellip;&rdquo;)</p>
+<p><strong>REPITO, esto solo son textos basados en mis experiencias, cualquier duda que no sea aclarada aquí te invito a consultarla en documentaciones oficiales.</strong></p>
+</blockquote>
+<hr class="awesome-hr">
+<blockquote class="text-danger"><p>📶 <strong>Nivel de dificultad</strong>
+DIFICIL</p>
+</blockquote>
+<hr class="awesome-hr">
+<h2 id="que-es-firejail" class="heading-element"><span>¿Que es Firejail?</span>
+  <a href="#que-es-firejail" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><blockquote>
+<p><strong>Web oficial de Firejail:</strong> Firejail es un programa SUID (Set User ID) que reduce el riesgo de violaciones de seguridad al restringir el entorno de ejecución de aplicaciones que no son de confianza utilizando espacios de nombres de Linux y seccomp-bpf. Permite que un proceso y todos sus descendientes tengan su propia vista privada de los recursos del kernel compartidos globalmente, como la pila de red, la tabla de procesos y la tabla de montaje.</p>
+</blockquote>
+<p>En definitiva una cajita de mie&hellip; donde podemos ejecutar nuestras porquerías minimizando el riesgo de que, lo que ejecutes, haga cosas indebidas en tu sistema operativo. <em>Pero como bien dice la wiki de Archlinux, ejecutar código inseguro, nunca es seguro y un sandboxing no va a cambiar esto.</em></p>
+<h2 id="su-utilidad" class="heading-element"><span>Su utilidad</span>
+  <a href="#su-utilidad" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>En mi caso ha sido útil a la hora de crear distintos &ldquo;perfiles&rdquo; de uso dentro de un mismo equipo, es decir, cuando me he encontrado en la obligación de hacer uso compartido de un equipo. Los navegadores web, por ejemplo, suelen ser aplicaciones utilizadas por más de una persona en estas situaciones. Nadie en su sano juicio realiza tareas personales en un equipo compartido, pero si no te queda otra opción, utilizar Firejail sería una buena opción para no facilitar que tus datos queden en manos ajenas.</p>
+<h2 id="instalación" class="heading-element"><span>Instalación</span>
+  <a href="#instalaci%c3%b3n" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>La instalación es simple, utilizar el gestor de paquetes de tu distribución, en mi caso <code>pacman</code>, en el tuyo puede ser <code>apt</code>, <code>dnf</code>, <code>zypper</code> o lo que corresponda. <code>sudo pacman -S firejail</code>.</p>
+<p>A partir de aquí, su uso es el mismo en todas las distribuciones Linux, en teoría, no debe variar nada.</p>
+<h2 id="uso-básico-principales-inconvenientes-y-configuración" class="heading-element"><span>Uso básico, principales inconvenientes y configuración</span>
+  <a href="#uso-b%c3%a1sico-principales-inconvenientes-y-configuraci%c3%b3n" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 id="uso-básico" class="heading-element"><span>Uso básico</span>
+  <a href="#uso-b%c3%a1sico" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><h4 id="configuraciones-previas" class="heading-element"><span>Configuraciones previas</span>
+  <a href="#configuraciones-previas" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Crear grupo y añadir usuario</span>
+</span></span><span class="line"><span class="cl">sudo groupadd -r firejail <span class="o">&amp;&amp;</span> sudo gpasswd -a <span class="nv">$USER</span> firejail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Modificar grupo para el archivo /usr/share/firejail, se mantiene el dueño como root.</span>
+</span></span><span class="line"><span class="cl">sudo chown root:firejail /usr/bin/firejail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Modificar permisos</span>
+</span></span><span class="line"><span class="cl">sudo chmod <span class="m">4750</span> /usr/bin/firejail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Explicación de los permisos:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#   4: Este número indica el modo de permiso para el propietario del archivo. En este caso, se le otorgan los siguientes permisos:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     r: Leer</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     w: Escribir</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     x: Ejecutar</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   7: Este número indica el modo de permiso para el grupo del archivo. En este caso, se le otorgan los siguientes permisos:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     r: Leer</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     w: Escribir</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     x: Ejecutar</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   5: Este número indica el modo de permiso para otros usuarios. En este caso, se le otorgan los siguientes permisos:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     r: Leer</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     x: Ejecutar</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   0: Este número indica que la bit SUID no está establecida. La bit SUID permite que un archivo sea ejecutado con los privilegios de su propietario, incluso si el usuario que lo ejecuta no tiene esos privilegios.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Comprobar:</span>
+</span></span><span class="line"><span class="cl">sudo ls -l /usr/bin/firejail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># La salida deberia mostrar lo siguiente:</span>
+</span></span><span class="line"><span class="cl">.rwsr-x--- root firejail <span class="m">440</span> KB Wed May  <span class="m">1</span> 16:09:50 <span class="m">2024</span> /usr/bin/firejail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># REINICIAR</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="tip" class="heading-element"><span>TIP</span>
+  <a href="#tip" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>En Archilinux tenemos la opción de crear hooks, desconozco si esto es posible en otras distribuciones. Un hook es una acción que se ejecuta en Archlinux cuando instalamos un paquete o cada vez que se actualice. Cuando se lance una actualización y hagamos un update del equipo, estos permisos volverán a su estado inicial. Por lo que en este caso es necesario un hook para mantener los permisos que hemos modificado anteriormente y no deteriorar la configuración. Simplemente, debemos crear el siguiente archivo:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Crear el directorio hooks</span>
+</span></span><span class="line"><span class="cl">sudo mkdir /etc/pacman.d/hooks/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Crear el hook</span>
+</span></span><span class="line"><span class="cl">sudo touch /etc/pacman.d/hooks/firejail-permissions.hook
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Añadir contenido:</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Trigger<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Operation</span> <span class="o">=</span> Install
+</span></span><span class="line"><span class="cl"><span class="nv">Operation</span> <span class="o">=</span> Upgrade
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span> <span class="o">=</span> Package
+</span></span><span class="line"><span class="cl"><span class="nv">Target</span> <span class="o">=</span> firejail
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Action<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Depends</span> <span class="o">=</span> coreutils
+</span></span><span class="line"><span class="cl"><span class="nv">Depends</span> <span class="o">=</span> bash
+</span></span><span class="line"><span class="cl"><span class="nv">When</span> <span class="o">=</span> PostTransaction
+</span></span><span class="line"><span class="cl"><span class="nv">Exec</span> <span class="o">=</span> /usr/bin/sh -c <span class="s2">&#34;chown root:firejail /usr/bin/firejail &amp;&amp; chmod 4750 /usr/bin/firejail&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Description</span> <span class="o">=</span> Setting /usr/bin/firejail owner to <span class="s2">&#34;root:firejail&#34;</span> and mode <span class="s2">&#34;4750&#34;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Firejail provee por defecto distintos perfiles que se almacenan en la ruta <code>/etc/firejail</code>. Utilizando <code>ls /etc/firejail '\.profile$' | wc -l</code> se mostrará la cantidad de archivos *.profile disponibles en nuestro equipo. En el caso de Archlinux, un total de 199.</p>
+<p>Podemos buscar manualmente si la aplicación que deseamos utilizar con Firejail dispone de un perfil o hacer una búsqueda, ej. <code>find /etc/firejail -type f -name &quot;firefox.profile&quot;</code></p>
+<p>Evidentemente, Firefox dispone de perfil, basta con ejecutar <code>firejail firefox</code> y tenemos Firefox dentro de un entorno &ldquo;controlado&rdquo;. El archivo <code>firefox.profile</code>, tiene el siguiente aspecto:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Firejail profile for firefox</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Description: Safe and easy web browser from Mozilla</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># This file is overwritten after every install/update</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Persistent local customizations</span>
+</span></span><span class="line"><span class="cl">include firefox.local
+</span></span><span class="line"><span class="cl"><span class="c1"># Persistent global definitions</span>
+</span></span><span class="line"><span class="cl">include globals.local
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># NOTE: sandboxing web browsers is as important as it is complex. Users might be</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># interested in creating custom profiles depending on use case (e.g. one for</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># general browsing, another for banking, ...). Consult our FAQ/issue tracker for more</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># info. Here are a few links to get you going.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://github.com/netblue30/firejail/wiki/Frequently-Asked-Questions#firefox-doesnt-open-in-a-new-sandbox-instead-it-opens-a-new-tab-in-an-existing-firefox-instance</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://github.com/netblue30/firejail/wiki/Frequently-Asked-Questions#how-do-i-run-two-instances-of-firefox</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://github.com/netblue30/firejail/issues/4206#issuecomment-824806968</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">noblacklist <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.cache/mozilla
+</span></span><span class="line"><span class="cl">noblacklist <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.mozilla
+</span></span><span class="line"><span class="cl">noblacklist <span class="si">${</span><span class="nv">RUNUSER</span><span class="si">}</span>/*firefox*
+</span></span><span class="line"><span class="cl">noblacklist <span class="si">${</span><span class="nv">RUNUSER</span><span class="si">}</span>/psd/*firefox*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">blacklist /usr/libexec
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mkdir <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.cache/mozilla/firefox
+</span></span><span class="line"><span class="cl">mkdir <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.mozilla
+</span></span><span class="line"><span class="cl">whitelist <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.cache/mozilla/firefox
+</span></span><span class="line"><span class="cl">whitelist <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/.mozilla
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Add one of the following whitelist options to your firefox.local to enable KeePassXC Plugin support.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># NOTE: start KeePassXC before Firefox and keep it open to allow communication between them.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#whitelist ${RUNUSER}/kpxc_server</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#whitelist ${RUNUSER}/org.keepassxc.KeePassXC.BrowserServer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">whitelist /usr/share/doc
+</span></span><span class="line"><span class="cl">whitelist /usr/share/firefox
+</span></span><span class="line"><span class="cl">whitelist /usr/share/gnome-shell/search-providers/firefox-search-provider.ini
+</span></span><span class="line"><span class="cl">whitelist /usr/share/gtk-doc/html
+</span></span><span class="line"><span class="cl">whitelist /usr/share/mozilla
+</span></span><span class="line"><span class="cl">whitelist /usr/share/webext
+</span></span><span class="line"><span class="cl">whitelist <span class="si">${</span><span class="nv">RUNUSER</span><span class="si">}</span>/*firefox*
+</span></span><span class="line"><span class="cl">whitelist <span class="si">${</span><span class="nv">RUNUSER</span><span class="si">}</span>/psd/*firefox*
+</span></span><span class="line"><span class="cl">include whitelist-usr-share-common.inc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># firefox requires a shell to launch on Arch - add the next line to your firefox.local to enable private-bin.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#private-bin bash,dbus-launch,dbus-send,env,firefox,sh,which</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Fedora uses shell scripts to launch firefox - add the next line to your firefox.local to enable private-bin.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#private-bin basename,bash,cat,dirname,expr,false,firefox,firefox-wayland,getenforce,ln,mkdir,pidof,restorecon,rm,rmdir,sed,sh,tclsh,true,uname</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Add the next line to your firefox.local to enable private-etc support - note that this must be enabled in your firefox-common.local too.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#private-etc firefox</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">dbus-user filter
+</span></span><span class="line"><span class="cl">dbus-user.own org.mozilla.*
+</span></span><span class="line"><span class="cl">dbus-user.own org.mpris.MediaPlayer2.firefox.*
+</span></span><span class="line"><span class="cl"><span class="c1"># Add the next line to your firefox.local to enable native notifications.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#dbus-user.talk org.freedesktop.Notifications</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Add the next line to your firefox.local to allow inhibiting screensavers.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#dbus-user.talk org.freedesktop.ScreenSaver</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Add the next lines to your firefox.local for plasma browser integration.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#dbus-user.own org.mpris.MediaPlayer2.plasma-browser-integration</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#dbus-user.talk org.kde.JobViewServer</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#dbus-user.talk org.kde.kuiserver</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Add the next line to your firefox.local to allow screen sharing under wayland.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#dbus-user.talk org.freedesktop.portal.Desktop</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Add the next line to your firefox.local if screen sharing sharing still does not work</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># with the above lines (might depend on the portal implementation).</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#ignore noroot</span>
+</span></span><span class="line"><span class="cl">ignore dbus-user none
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Redirect</span>
+</span></span><span class="line"><span class="cl">include firefox-common.profile</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Se muestran parámetros como <code>--noblacklist</code> o <code>--whitelist</code>, entre otros. Si haces un <code>firejail --help</code> se listarán los distintos parámetros disponibles, por ejemplo <code>--noblacklist</code> muestra: <em>disable blacklist for file or directory</em>, se utiliza para desactivar una restricción específica de la lista negra. Mientras que <code>--whitelist</code> se utiliza para definir una lista positiva de archivos y directorios accesibles. La lista de opciones disponibles es abrumadora, por lo que definir tu propio perfil para una aplicación si no sabes exactamente que es lo que estás haciendo resultará frustrante. Por lo que mi consejo es que partas de una base hecha, es decir, copia un perfil predefinido y adáptalo a tus necesidades.</p>
+<h3 id="inconvenientes" class="heading-element"><span>Inconvenientes</span>
+  <a href="#inconvenientes" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Por defecto la instalación de Firejail viene con un <code>firejail.config</code> así:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># This is Firejail system-wide configuration file. The file contains</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># keyword-argument pairs, one per line. Most features are enabled by default.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Use &#39;yes&#39; or &#39;no&#39; as configuration values.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Allow programs to display a tray icon (warning: allows escaping the sandbox;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># see https://github.com/netblue30/firejail/discussions/4053)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># allow-tray no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable AppArmor functionality, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># apparmor yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Number of ARP probes sent when assigning an IP address for --net option,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># default 2. This is a partial implementation of RFC 5227. A 0.5 seconds</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># timeout is implemented for each probe. Increase this number to 4 if your</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># local layer 2 network uses RSTP (IEEE 802.1w). Permitted values are</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># between 1 and 30.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># arp-probes 2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable bind support, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># bind yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Allow (DRM) execution in browsers, default disabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># browser-allow-drm no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Disable U2F in browsers, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># browser-disable-u2f yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable chroot support, default disabled</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># chroot no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable dbus handling, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># dbus yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Disable /mnt, /media, /run/mount and /run/media access. By default access</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># to these directories is enabled. Unlike --disable-mnt profile option this</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># cannot be overridden by --noblacklist or --ignore.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># disable-mnt no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable file transfer support, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># file-transfer yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable Firejail green prompt in terminal, default disabled</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># firejail-prompt no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Force use of nonewprivs.  This mitigates the possibility of</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># a user abusing firejail&#39;s features to trick a privileged (suid</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># or file capabilities) process into loading code or configuration</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># that is partially under their control.  Default disabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># force-nonewprivs no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Allow sandbox joining as a regular user, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># root user can always join sandboxes.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># join yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Timeout when joining a sandbox, default five seconds. It is not</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># possible to join a sandbox while it is still starting up. Wait up</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># to the specified period of time to allow sandbox setup to finish.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># join-timeout 5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># tracelog enables auditing blacklisted files and directories. A message</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># is sent to syslog in case the file or the directory is accessed.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Disabled by default.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># tracelog no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable sandbox name change, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># name-change yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Change default netfilter configuration. When using --netfilter option without</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># a file argument, the default filter is hardcoded (see man 1 firejail). This</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># configuration entry allows the user to change the default by specifying</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># a file containing the filter configuration. The filter file format is the</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># format of iptables-save and iptables-restore commands. Example:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># netfilter-default /etc/iptables.iptables.rules</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable networking features, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># network yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable overlayfs features, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># overlayfs yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Hide blacklisted files in /etc directory (enabling this may break</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># /etc/resolv.conf; see #5010), default disabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># etc-hide-blacklisted no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Set the limit for file copy in several --private-* options. The size is set</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># in megabytes. By default we allow up to 500MB.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Note: the files are copied in RAM.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># file-copy-limit 500</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable private-bin feature, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># private-bin yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Remove /usr/local directories from private-bin list, default disabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># private-bin-no-local no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable private-cache feature, default enabled</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># private-cache yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable private-etc feature, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># private-etc yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable private-home feature, default enabled</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># private-home yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable private-lib feature, default disabled</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># private-lib no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable private-opt feature, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># private-opt yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable private-srv feature, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># private-srv yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable --quiet as default every time the sandbox is started. Default disabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># quiet-by-default no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable restricted network support, default disabled. If enabled,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># networking features should also be enabled (network yes).</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Restricted networking grants access to --interface, --net=ethXXX and</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --netfilter only to root user. Regular users are only allowed --net=none.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># restricted-network no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable seccomp support, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># seccomp yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Add rules to the default seccomp filter. Same syntax as for --seccomp=</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># None by default; this is an example.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># seccomp-filter-add !chroot,kcmp,mincore</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Seccomp error action, kill, log or errno (EPERM, ENOSYS etc)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># seccomp-error-action EPERM</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># If seccomp subsystem in Linux kernel kills a program, a message is posted to syslog.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Starting with Linux kernel version 4.14, it is possible to send seccomp violation messages</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># even if the program is allowed to continue (see &#34;seccomp-error-action EPERM&#34; above).</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># This logging feature is disabled by default in our implementation.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># seccomp-log no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable user namespace support, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># userns yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Disable whitelist top level directories, in addition to those</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># that are disabled out of the box. None by default; this is an example.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># whitelist-disable-topdir /etc,/usr/etc</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable X11 sandboxing support, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># x11 yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Xephyr command extra parameters. None by default; these are examples.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xephyr-extra-params -keybd ephyr,,,xkbmodel=evdev</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xephyr-extra-params -grayscale</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Screen size for --x11=xephyr, default 800x600. Run /usr/bin/xrandr for</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># a full list of resolutions available on your specific setup.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xephyr-screen 640x480</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xephyr-screen 800x600</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xephyr-screen 1024x768</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xephyr-screen 1280x1024</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Firejail window title in Xephyr, default enabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xephyr-window-title yes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable this option if you have a version of Xpra that supports --attach switch</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># for start command, default disabled.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xpra-attach no</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Xpra server command extra parameters. None by default; this is an example.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xpra-extra-params --dpi 96</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Screen size for --x11=xvfb, default 800x600x24.  The third dimension is</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># color depth; use 24 unless you know exactly what you&#39;re doing.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xvfb-screen 640x480x24</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xvfb-screen 800x600x24</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xvfb-screen 1024x768x24</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xvfb-screen 1280x1024x24</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Xvfb command extra parameters.  None by default; this is an example.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xvfb-extra-params -pixdepths 8 24 32</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Lo que se traduce en un Firejail que solamente funcionará con perfiles. <em>En el supuesto de ejecutar una aplicación en este contexto, que omitiese los perfiles preconfigurados y que resultase ser maliciosa, evidentemente derivaría en un grave problema para nuestro equipo, independientemente de que usemos o no Firejail.</em></p>
+<p><strong>Por lo que resulta indispensable tomar una decisión sobre este tema. Elegir utilizar perfiles o bien delegar la seguridad a <code>firejail.config</code> en caso de que no exista un perfil disponible para la aplicación que ejecutemos.</strong></p>
+<h3 id="configuración" class="heading-element"><span>Configuración</span>
+  <a href="#configuraci%c3%b3n" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>No aconsejo centrarse en modificar el archivo <code>/etc/firejail/firejail.config</code> como opción única, debes tener en cuenta que delegar toda la responsabilidad a un archivo no es una decisión óptima. Este archivo debe tomarse como última barrera frente a posibles amenazas y combinarlo con perfiles robustos.</p>
+<h4 id="configuración-firejailconf" class="heading-element"><span>Configuración firejail.conf</span>
+  <a href="#configuraci%c3%b3n-firejailconf" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>En mi opinión, descomentar las siguientes líneas resulta imprescindible, de resto no tocaría nada. Repito, es mi opinión, no soy experto.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Enable AppArmor functionality, default enabled.</span>
+</span></span><span class="line"><span class="cl">apparmor yes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Disable /mnt, /media, /run/mount and /run/media/access. By default access</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># to these directories is enabled. Unlike --disable-mnt profile option this</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># cannot be overridden by --noblacklist or --ignore.</span>
+</span></span><span class="line"><span class="cl">disable-mnt no
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable networking features, default enabled.</span>
+</span></span><span class="line"><span class="cl">network yes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable seccomp support, default enabled.</span>
+</span></span><span class="line"><span class="cl">seccomp yes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable user namespace support, default enabled.</span>
+</span></span><span class="line"><span class="cl">userns yes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Enable or disable X11 sandboxing support, default enabled.</span>
+</span></span><span class="line"><span class="cl">x11 yes</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="gestionar-perfiles" class="heading-element"><span>Gestionar perfiles</span>
+  <a href="#gestionar-perfiles" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>Como mencioné anteriormente existen bastantes perfiles predefinidos y puedes tomarlos como base para definir con exactitud como quieres que se comporte cada aplicación. Solo debes hacer lo siguiente:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Crear un directorio local para crear o realizar modificaciones en los perfiles que necesites.</span>
+</span></span><span class="line"><span class="cl">mkdir ~/.config/firejail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Copiar un perfil</span>
+</span></span><span class="line"><span class="cl">cp /etc/firejail/vim.profile ~/.config/firejail/</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Una vez copiado lo podemos editar sin miedo a dañar el perfil original. <strong>No existe necesidad de copiar un perfil en la carpeta local si no vamos a realizar modificaciones al perfil. Bastaría con ejecutar <code>firejail &lt;aplicacion&gt;</code> si estamos de acuerdo con los parámetros presentes en el perfil alojado en <code>/etc/firejail</code>.</strong></p>
+<p>Para ejecutar la aplicación con un perfil personalizado simplemente utilizaremos la flag <code>--profile</code> del siguiente modo <code>firejail --profile=~/.config/firejail/vim.profile</code>.</p>
+<blockquote>
+<p>En el Troubleshooting de la wiki de Arch mencionan que los navegadores y las aplicaciones hechas con Electron suelen presentar más problemas a la hora de ejecutarse con Firejail. Esto es 100% real y en la mayoría de ocasiones ha sido Firefox la principal fuente de quebraderos de cabeza a la hora de modificar o crear un perfil de cero. No recomiendo para nada tocar el perfil por defecto. En el proceso de escritura de esta entrada tuve distintos problemas y todos ellos con Firefox, desde el cierre de Firejail por culpa de un error de código en un theme GTK, hasta cierres esporádicos sin motivo aparente.</p>
+<p>Tal es el problema que basta con mencionar que Firefox dispone de su propia documentación para la configuración en la <a href="https://firejail.wordpress.com/documentation-2/firefox-guide/"target="_blank" rel="external nofollow noopener noreferrer">Web de Firejail.</a></p>
+</blockquote>
+<h2 id="conclusiones-y-cierre" class="heading-element"><span>Conclusiones y cierre</span>
+  <a href="#conclusiones-y-cierre" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>Firejail es una herramienta sumamente compleja, el camino hasta lograr una configuración deseada puede llegar a ser frustrante. Hay opciones como <code>firecfg</code> o <code>firetools</code>. La primera opción no es para mí, <code>firecfg</code> según la wiki de Archlinux, lo que hace cuando ejecutamos <code>sudo firecfg</code> es crear enlaces simbólicos de las aplicaciones presentes en <code>/usr/local/bin</code> con perfil disponible en <code>/etc/firejail</code>, hacia <code>/usr/bin/firejail</code>. <em>Aqui creo que hay un error, ya que es probable que actúe sobre <code>/usr/bin</code>.</em> Esto significa que utilizaremos Firejail por defecto para la mayoría de aplicaciones de nuestro sistema, salvo algunos programas CLI como tar, curl y git.</p>
+<blockquote>
+<p><strong>Si has ejecutado por simple curiosidad <code>firecfg</code> y quieres revertirlo, tranquilo hay solución. <code>firecfg --clean</code>.</strong></p>
+</blockquote>
+<p>La segunda opción <code>firetools</code> tampoco es una maravilla, pero al menos tiene una utilidad, podemos sacar de ella perfiles. Se trata de una interfaz gráfica para Firejail que permite hacer lo que hacemos por consola, pero con una GUI. Existe en ella una opción de ejecutar una aplicación de la lista con un perfil custom, una vez seleccionada la aplicación pasaremos a una ventana de opciones donde marcas lo que quieras y por último te presenta el perfil en texto plano. Oportunidad para copiarlo y guardarlo en tu carpeta de perfiles.</p>
+<hr class="awesome-hr">
+<p><img loading="lazy" src="/images/content_blog/firejail_wizard.png" alt="firewizard" srcset="/images/content_blog/firejail_wizard.png?size=small, /images/content_blog/firejail_wizard.png?size=medium 1.5x, /images/content_blog/firejail_wizard.png?size=large 2x" data-title="firewizard" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<hr class="awesome-hr">
+<p>Un último detalle llamativo, Firejail cuenta con soporte para AppImage. Por lo que puedes ejecutar <code>firejail --appimage /ruta.../&lt;aplicacion.AppImage&gt;</code>. Me dejo muchas cosas en el tintero y esta publicación queda muy lejos de ser, como dije al inicio, un referente o una guía a seguir. Simplemente, pretendo despertar tu curiosidad y que conozcas las distintas formas que existen para segurizar tu sistema. Espero que te haya gustado.</p>
+<hr class="awesome-hr">
+<blockquote>
+<p> <strong>FUENTES</strong></p>
+<p><a href="https://firejail.wordpress.com/"target="_blank" rel="external nofollow noopener noreferrer">Web Firejail</a></p>
+<p><a href="https://wiki.archlinux.org/title/Firejail"target="_blank" rel="external nofollow noopener noreferrer">Wiki de Archlinux</a></p>
+</blockquote>
+<hr class="awesome-hr">
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Actualizado el 2024-05-10 11:35:47">Actualizado el 2024-05-10&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Compartir en Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/05a3ac3/" data-title="Firejail, La Jaula Para Apps" data-hashtags="Linux,Seguridad"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Compartir en Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/05a3ac3/" data-hashtag="Linux"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Compartir en 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/05a3ac3/" data-title="Firejail, La Jaula Para Apps"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="Etiquetas - Linux">Linux</a><a href="/tags/seguridad/" class="post-tag" title="Etiquetas - Seguridad">Seguridad</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Regresar</a></span>&nbsp;|&nbsp;<span><a href="/">Inicio</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/8734126/" class="post-nav-item" rel="prev" title="Instalar AppArmor en Archlinux"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Instalar AppArmor en Archlinux</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contenido"><h2 class="toc-title">Contenido&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line custom">vm_jorge</div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning"></div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copiar al portapapeles","editLockTitle":"Bloquear bloque de código editable","editUnLockTitle":"Desbloquear bloque de código editable","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"De acuerdo","link":"Aprende más","message":"Este sitio web utiliza Cookies para mejorar su experiencia."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"version":"v0.3.6"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
