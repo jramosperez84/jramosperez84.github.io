@@ -2,15 +2,20 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
-      <loc>http://localhost:1313/categories/</loc><lastmod>2024-05-10T11:35:47&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/tags/android/</loc><lastmod>2024-06-09T18:23:39&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/categories/android/</loc><lastmod>2024-06-09T18:23:39&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/categories/</loc><lastmod>2024-06-09T18:23:39&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/tags/desarrollo/</loc><lastmod>2024-06-09T18:23:39&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/categories/desarrollo/</loc><lastmod>2024-06-09T18:23:39&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/posts/6dd8d11/</loc><lastmod>2024-06-09T18:23:39&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/posts/</loc><lastmod>2024-06-09T18:23:39&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/tags/</loc><lastmod>2024-06-09T18:23:39&#43;01:00</lastmod></url><url>
+      <loc>http://localhost:1313/</loc><lastmod>2024-06-09T18:23:39&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/posts/05a3ac3/</loc><lastmod>2024-05-10T11:35:47&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/tags/linux/</loc><lastmod>2024-05-10T11:35:47&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/categories/linux/</loc><lastmod>2024-05-10T11:35:47&#43;01:00</lastmod></url><url>
-      <loc>http://localhost:1313/posts/</loc><lastmod>2024-05-10T11:35:47&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/tags/seguridad/</loc><lastmod>2024-05-10T11:35:47&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/categories/seguridad/</loc><lastmod>2024-05-10T11:35:47&#43;01:00</lastmod></url><url>
-      <loc>http://localhost:1313/tags/</loc><lastmod>2024-05-10T11:35:47&#43;01:00</lastmod></url><url>
-      <loc>http://localhost:1313/</loc><lastmod>2024-05-10T11:35:47&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/python_builder/</loc><lastmod>2024-05-09T15:14:50&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/projects/</loc><lastmod>2024-05-09T15:09:30&#43;01:00</lastmod></url><url>
       <loc>http://localhost:1313/archives/</loc><lastmod>2024-05-09T15:05:00&#43;01:00</lastmod></url><url>

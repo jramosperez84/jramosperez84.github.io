@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Desarrollo - Etiqueta - vm_jorge</title>
+    <link>http://localhost:1313/tags/desarrollo/</link>
+    <description>Desarrollo - Etiqueta | vm_jorge</description>
+    <generator>Hugo -- gohugo.io</generator><language>es</language><copyright>vm_jorge</copyright><lastBuildDate>Sun, 09 Jun 2024 18:23:39 &#43;0100</lastBuildDate><atom:link href="http://localhost:1313/tags/desarrollo/" rel="self" type="application/rss+xml" /><item>
+  <title>Gestión de dependencias Android</title>
+  <link>http://localhost:1313/posts/6dd8d11/</link>
+  <pubDate>Sun, 09 Jun 2024 18:23:39 &#43;0100</pubDate>
+  <author>Autor</author>
+  <guid>http://localhost:1313/posts/6dd8d11/</guid>
+  <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>

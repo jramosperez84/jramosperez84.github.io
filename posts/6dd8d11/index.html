@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="es">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Gestión De Dependencias Android - vm_jorge</title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="" /><meta name="keywords" content='android' />
+  <meta itemprop="name" content="Gestión de dependencias Android">
+  <meta itemprop="datePublished" content="2024-06-09T18:23:39+01:00">
+  <meta itemprop="dateModified" content="2024-06-09T18:23:39+01:00">
+  <meta itemprop="wordCount" content="1358">
+  <meta itemprop="keywords" content="android"><meta property="og:url" content="http://localhost:1313/posts/6dd8d11/">
+  <meta property="og:site_name" content="vm_jorge">
+  <meta property="og:title" content="Gestión de dependencias Android">
+  <meta property="og:locale" content="es">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-06-09T18:23:39+01:00">
+    <meta property="article:modified_time" content="2024-06-09T18:23:39+01:00">
+    <meta property="article:tag" content="Android">
+    <meta property="article:tag" content="Desarrollo">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Gestión de dependencias Android">
+<meta name="application-name" content="vm_jorge">
+<meta name="apple-mobile-web-app-title" content="vm_jorge"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/penguin.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/6dd8d11/" /><link rel="prev" href="http://localhost:1313/posts/05a3ac3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Gestión de dependencias Android",
+    "inLanguage": "es",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/6dd8d11\/"
+    },"genre": "posts","keywords": "Android, Desarrollo","wordcount":  1358 ,
+    "url": "http:\/\/localhost:1313\/posts\/6dd8d11\/","datePublished": "2024-06-09T18:23:39+01:00","dateModified": "2024-06-09T18:23:39+01:00","license": "vm_jorge","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "vm_jorge"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="vm_jorge"><img loading="lazy" src="/images/penguin.png" alt="vm_jorge" data-title="vm_jorge" width="26" height="26" class="logo" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span class="header-title-text">vm_jorge</span></a><span class="header-subtitle">En mí máquina funciona...</span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/archives/"
+                title="Archivo de entradas"
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archivo</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                title="Categorias"
+                
+              ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categorias</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                title="Etiquetas"
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Etiquetas</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/projects/"
+                
+                
+              ><i class="fa-solid fa-diagram-project fa-fw fa-sm" aria-hidden="true"></i> Proyectos</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Cambia el tema">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="vm_jorge"><img loading="lazy" src="/images/penguin.png" alt="vm_jorge" data-title="vm_jorge" width="26" height="26" class="logo" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/><span class="header-title-text">vm_jorge</span></a><span class="header-subtitle">En mí máquina funciona...</span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/archives/"
+                  title="Archivo de entradas"
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Archivo</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  title="Categorias"
+                  
+                ><i class="fa-solid fa-folder-tree fa-fw fa-sm" aria-hidden="true"></i> Categorias</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  title="Etiquetas"
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Etiquetas</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/projects/"
+                  
+                  
+                ><i class="fa-solid fa-diagram-project fa-fw fa-sm" aria-hidden="true"></i> Proyectos</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Cambia el tema"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=""></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Gestión De Dependencias Android</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      vm_jorge</span></span><span class="post-included-in">&nbsp;incluido en <a href="/categories/android/" class="post-category" title="Categoría - Android"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Android</a>&ensp;<a href="/categories/desarrollo/" class="post-category" title="Categoría - Desarrollo"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Desarrollo</a></span></div><div class="post-meta-line"><span title="publicado el 2024-06-09 18:23:39"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-06-09">2024-06-09</time></span>&nbsp;<span title="1358 palabras"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>Aproximadamente 1400 palabras</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>7 minutos</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contenido</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#mi-historia-y-contexto">Mi historia y contexto</a></li>
+        <li><a href="#primeros-cambios">Primeros cambios</a></li>
+        <li><a href="#nuevo-sistema-para-gestionar-dependencias">Nuevo sistema para gestionar dependencias</a>
+          <ul>
+            <li><a href="#versions">[versions]</a></li>
+            <li><a href="#libraries">[libraries]</a></li>
+            <li><a href="#tip">TIP</a></li>
+            <li><a href="#plugins">[plugins]</a></li>
+          </ul>
+        </li>
+        <li><a href="#comunicar-libsversions-con-buildgradle">Comunicar libs.versions con build.gradle</a>
+          <ul>
+            <li><a href="#estructura-de-una-dependencia-en-buildgradle-modulo-de-proyecto">Estructura de una dependencia en build.gradle modulo de proyecto</a></li>
+            <li><a href="#estructura-de-una-dependencia-en-buildgradle-modulo-de-app">Estructura de una dependencia en build.gradle modulo de app</a></li>
+          </ul>
+        </li>
+        <li><a href="#conclusiones">Conclusiones</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h3 id="mi-historia-y-contexto" class="heading-element"><span>Mi historia y contexto</span>
+  <a href="#mi-historia-y-contexto" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Hace ya aproximadamente un año que comencé mi aprendizaje en el desarrollo de apps Android nativas, utilizando para ello las herramientas y recursos que propone Google como oficiales. Desde entonces han cambiado distintas cosas, desde el sistema de diseño de UI, hasta el modelo de gestión de dependencias. Este último es en el que he percibido más cambios.</p>
+<p>Para aquellos que no tengan idea sobre el desarrollo Android, la configuración del proyecto se gestiona con Gradle, esto es quizás lo único que no ha cambiado.
+En el inicio de mi aprendizaje recuerdo que me tope con un <code>build.gradle</code> escrito en Groovy, muy distinto a lo que se puede ver hoy. Si mal no recuerdo se trataba de una app ToDo o una app para agregar frases y para ello utilicé Java en lugar de Kotlin, y era a este punto donde quería llegar.</p>
+<p>Desde la aparición de Kotlin se ha ido imponiendo el uso del lenguaje en la mayoría de partes de un proyecto, en primer lugar se sustituyo parcialmente el uso de Java en favor de Kotlin, posteriormente se hizo lo mismo con el sistema de vistas XML y el archivo de configuración del proyecto, ambas cosas sustituidas por Jetpack Compose y Kotlin respectivamente.</p>
+<blockquote>
+<p>Jetpack Compose es un sistema para la creación de vistas que utiliza Kotlin como lenguaje para este propósito.</p>
+</blockquote>
+<h3 id="primeros-cambios" class="heading-element"><span>Primeros cambios</span>
+  <a href="#primeros-cambios" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Con la implantación de Kotlin como lenguaje para gestionar la configuración de los proyectos se empezaron a ver ciertos cambios en la sintaxis del build.gradle:</p>
+<blockquote>
+<p>Dependencias escritas con Grovvy</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">def</span> <span class="n">lifecycle_version</span> <span class="o">=</span> <span class="s2">&#34;2.8.1&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">def</span> <span class="n">arch_version</span> <span class="o">=</span> <span class="s2">&#34;2.2.0&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// ViewModel
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">implementation</span> <span class="s2">&#34;androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// LiveData
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">implementation</span> <span class="s2">&#34;androidx.lifecycle:lifecycle-livedata:$lifecycle_version&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Lifecycles only (without ViewModel or LiveData)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">implementation</span> <span class="s2">&#34;androidx.lifecycle:lifecycle-runtime:$lifecycle_version&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Dependencias escritas con Kotlin</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="py">lifecycle</span><span class="n">_version</span> <span class="p">=</span> <span class="s2">&#34;2.8.1&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">val</span> <span class="py">arch</span><span class="n">_version</span> <span class="p">=</span> <span class="s2">&#34;2.2.0&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// ViewModel
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">implementation</span><span class="p">(</span><span class="s2">&#34;androidx.lifecycle:lifecycle-viewmodel:</span><span class="si">$lifecycle</span><span class="s2">_version&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// LiveData
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">implementation</span><span class="p">(</span><span class="s2">&#34;androidx.lifecycle:lifecycle-livedata:</span><span class="si">$lifecycle</span><span class="s2">_version&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Lifecycles only (without ViewModel or LiveData)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">implementation</span><span class="p">(</span><span class="s2">&#34;androidx.lifecycle:lifecycle-runtime:</span><span class="si">$lifecycle</span><span class="s2">_version&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>   </span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="nuevo-sistema-para-gestionar-dependencias" class="heading-element"><span>Nuevo sistema para gestionar dependencias</span>
+  <a href="#nuevo-sistema-para-gestionar-dependencias" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Lo anterior no es lo que ha motivado que haya escrito este texto. Lo realmente llamativo es que tanto el <code>build.gradle</code> del módulo app como el del modulo de proyecto ya no son los encargados de alojar las dependencias del proyecto.</p>
+<p>Esta labor recae ahora en el fichero <code>libs.versions.toml</code>. <em>En un inicio me resultó algo confuso, ya que de la noche a la mañana el aspecto que tenía el build.gradle al crear un proyecto nuevo había cambiado, pero no había cambiado del todo.</em> Es decir, en la base del documento se siguía mostrando la lista de dependencias, pero se mostraban con aspecto más limpio y totalmente distinto a lo que acostumbraba a ver.</p>
+<p>Trate de añadir una nueva dependencia, tal y como lo había hecho desde ese entonces hacía detrás, pero al guardar los cambios y actualizar comenzaron a aparecer muchos errores.</p>
+<p>Esto se debía a que, como ya mencioné, <code>build.gradle</code> no es el responsable de alojar dependencias del proyecto, por lo tanto, resulta inútil crear un <code>implementation()</code> como se venía haciendo hasta ahora.</p>
+<p><code>libs.versions</code> es un fichero <strong>toml</strong> con tres bloques bien diferenciados, <strong>versions</strong>, <strong>libraries</strong> y por último <strong>plugins</strong>.</p>
+<p>En su estructura encontrarás en primer lugar, <strong>versions</strong>, como su nombre indica, se utiliza para declarar o establecer las versiones de las dependencias, para posteriormente referenciarlas, bien en libraries o en plugins.</p>
+<h4 id="versions" class="heading-element"><span>[versions]</span>
+  <a href="#versions" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>Tendría un aspecto similar al siguiente:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">versions</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">agp</span> <span class="p">=</span> <span class="s2">&#34;8.4.0&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">kotlin</span> <span class="p">=</span> <span class="s2">&#34;1.9.0&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">coreKtx</span> <span class="p">=</span> <span class="s2">&#34;1.10.1&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">junit</span> <span class="p">=</span> <span class="s2">&#34;4.13.2&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">junitVersion</span> <span class="p">=</span> <span class="s2">&#34;1.1.5&#34;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="libraries" class="heading-element"><span>[libraries]</span>
+  <a href="#libraries" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>El siguiente bloque es el de dependencias y tiene el siguiente aspecto:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">libraries</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">androidx-core-ktx</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">group</span> <span class="p">=</span> <span class="s2">&#34;androidx.core&#34;</span><span class="p">,</span> <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;core-ktx&#34;</span><span class="p">,</span> <span class="nx">version</span><span class="p">.</span><span class="nx">ref</span> <span class="p">=</span> <span class="s2">&#34;coreKtx&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">junit</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">group</span> <span class="p">=</span> <span class="s2">&#34;junit&#34;</span><span class="p">,</span> <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;junit&#34;</span><span class="p">,</span> <span class="nx">version</span><span class="p">.</span><span class="nx">ref</span> <span class="p">=</span> <span class="s2">&#34;junit&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">androidx-junit</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">group</span> <span class="p">=</span> <span class="s2">&#34;androidx.test.ext&#34;</span><span class="p">,</span> <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;junit&#34;</span><span class="p">,</span> <span class="nx">version</span><span class="p">.</span><span class="nx">ref</span> <span class="p">=</span> <span class="s2">&#34;junitVersion&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">androidx-espresso-core</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">group</span> <span class="p">=</span> <span class="s2">&#34;androidx.test.espresso&#34;</span><span class="p">,</span> <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;espresso-core&#34;</span><span class="p">,</span> <span class="nx">version</span><span class="p">.</span><span class="nx">ref</span> <span class="p">=</span> <span class="s2">&#34;espressoCore&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">androidx-lifecycle-runtime-ktx</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">group</span> <span class="p">=</span> <span class="s2">&#34;androidx.lifecycle&#34;</span><span class="p">,</span> <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;lifecycle-runtime-ktx&#34;</span><span class="p">,</span> <span class="nx">version</span><span class="p">.</span><span class="nx">ref</span> <span class="p">=</span> <span class="s2">&#34;lifecycleRuntimeKtx&#34;</span> <span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Esta sección está definida como libraries y contiene tablas de pares clave-valor, que son, <strong>group</strong>, <strong>name</strong> y <strong>version.ref</strong>.</p>
+<blockquote>
+<p>Las antigua estructura de implementation tenian un aspecto como este:</p>
+</blockquote>
+<p><code>&quot;androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version&quot;</code></p>
+<p>En ella se ven tres partes diferenciadas por el simbolo <code>:</code> <strong>la primera parte</strong> corresponde al grupo al que pertenece la librería, en este caso, <code>androidx.lifecycle</code>, <strong>el segundo</strong> pertenece a la librería que se añadirá al proyecto, <code>lifecycle-viewmodel</code> y <strong>la tercera</strong> y última parte corresponde a la versión.</p>
+<blockquote>
+<p>Cada tabla de pares se debe definir con el nombre de la librería añadida separando cada palabra por guiones, aclaro que nada impide que pongas el nombre que te dé la gana, pero por convención lo correcto debería ser lo que te he mencionado anteriormente. Por lo tanto, si quieres llevar esa librería a tu proyecto, quedaría con el siguiente aspecto:</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">versions</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifecycle-viewmodel</span> <span class="p">=</span> <span class="mf">2.8</span><span class="p">.</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">libraries</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">lifecycle-viewmodel</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">group</span> <span class="p">=</span> <span class="nx">androidx-lifecycle</span><span class="p">,</span> <span class="nx">name</span> <span class="p">=</span> <span class="nx">lifecycle-viewmodel</span><span class="p">,</span> <span class="nx">version-ref</span> <span class="p">=</span> <span class="nx">lifecycle-viewmodel</span> <span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr class="awesome-hr">
+<h4 id="tip" class="heading-element"><span>TIP</span>
+  <a href="#tip" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><blockquote>
+<p><strong>Cuando comencé se me atragantaba sobre todo la búsqueda de librerías y la búsqueda de las versiones disponibles. Irónicamente para esa labor me he estado ayudando de <a href="https://mvnrepository.com/"target="_blank" rel="external nofollow noopener noreferrer">Repositorio Maven</a>
+en lugar de utilizar la <em>web oficial de desarrollo de Android</em>, me resulta más intuitiva y más cómoda.</strong></p>
+</blockquote>
+<p>En primer lugar realizas la busqueda:</p>
+<p><img loading="lazy" src="/images/content_blog/mavenrepo.png" alt="busqueda" srcset="/images/content_blog/mavenrepo.png?size=small, /images/content_blog/mavenrepo.png?size=medium 1.5x, /images/content_blog/mavenrepo.png?size=large 2x" data-title="busqueda" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<hr class="awesome-hr">
+<p>Selecionas la librería:</p>
+<p><img loading="lazy" src="/images/content_blog/library.png" alt="libreria" srcset="/images/content_blog/library.png?size=small, /images/content_blog/library.png?size=medium 1.5x, /images/content_blog/library.png?size=large 2x" data-title="libreria" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<hr class="awesome-hr">
+<p>Seleccionas versión:</p>
+<p><img loading="lazy" src="/images/content_blog/version.png" alt="version" srcset="/images/content_blog/version.png?size=small, /images/content_blog/version.png?size=medium 1.5x, /images/content_blog/version.png?size=large 2x" data-title="version" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<hr class="awesome-hr">
+<p>Aquí ya se muestra la sintaxis para los distintos sistemas de gestión de dependencias.</p>
+<p><img loading="lazy" src="/images/content_blog/dependencia.png" alt="dependencia" srcset="/images/content_blog/dependencia.png?size=small, /images/content_blog/dependencia.png?size=medium 1.5x, /images/content_blog/dependencia.png?size=large 2x" data-title="dependencia" style="background: url(/images/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;for(const i of ['style', 'data-title','onerror','onload']){this.removeAttribute(i);}"/></p>
+<hr class="awesome-hr">
+<p>Si tomas la librería de la imagen y quieres trasladarla a tu toml, se vería del siguiente modo:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">versions</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">hilt-android</span> <span class="p">=</span> <span class="mf">2.51</span><span class="p">.</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">libraries</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">hilt-android</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">group</span> <span class="p">=</span> <span class="s2">&#34;com.google.dagger&#34;</span><span class="p">,</span> <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;hilt-android&#34;</span><span class="p">,</span> <span class="nx">version</span><span class="p">.</span><span class="nx">ref</span> <span class="p">=</span> <span class="s2">&#34;hilt-android&#34;</span> <span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="plugins" class="heading-element"><span>[plugins]</span>
+  <a href="#plugins" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>Por último en el documento <code>libs.versions</code> se encuentra <strong>plugins</strong>. Anterior a este sistema, las dependencias para los plugins se alojaban en el <code>build.gradle</code> del módulo del proyecto. Del mismo modo que las librerías, los plugins se han movido al <code>libs.versions</code>.</p>
+<p>Las tablas que contiene <strong>plugins</strong> también se componen de pares clave-valor, en este caso <strong>id</strong> y <strong>version.ref</strong>.</p>
+<p>El aspecto sería el siguiente:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">android-application</span> <span class="p">=</span> <span class="p">{</span> <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;com.android.application&#34;</span><span class="p">,</span> <span class="nx">version</span><span class="p">.</span><span class="nx">ref</span> <span class="p">=</span> <span class="s2">&#34;agp&#34;</span> <span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Del mismo modo que las librerías, la versión se gestiona en el bloque versions.</p>
+<h3 id="comunicar-libsversions-con-buildgradle" class="heading-element"><span>Comunicar libs.versions con build.gradle</span>
+  <a href="#comunicar-libsversions-con-buildgradle" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Como he terminado con en el bloque de <strong>plugins</strong>, explicaré como se traslada esto al <code>build.gradle</code> del módulo de proyecto.</p>
+<p>Antiguamente, el aspecto de este módulo era el siguiente:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="n">plugins</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="err">&#39;</span><span class="n">com</span><span class="p">.</span><span class="n">android</span><span class="p">.</span><span class="n">application</span><span class="err">&#39;</span> <span class="n">version</span> <span class="err">&#39;</span><span class="m">8.1</span><span class="p">.</span><span class="m">0</span><span class="err">&#39;</span> <span class="n">apply</span> <span class="k">false</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="err">&#39;</span><span class="n">com</span><span class="p">.</span><span class="n">android</span><span class="p">.</span><span class="n">library</span><span class="err">&#39;</span> <span class="n">version</span> <span class="err">&#39;</span><span class="m">8.1</span><span class="p">.</span><span class="m">0</span><span class="err">&#39;</span> <span class="n">apply</span> <span class="k">false</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="err">&#39;</span><span class="n">org</span><span class="p">.</span><span class="n">jetbrains</span><span class="p">.</span><span class="n">kotlin</span><span class="p">.</span><span class="n">android</span><span class="err">&#39;</span> <span class="n">version</span> <span class="err">&#39;</span><span class="m">1.7</span><span class="p">.</span><span class="m">20</span><span class="err">&#39;</span> <span class="n">apply</span> <span class="k">false</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>La forma actual de tratar las dependencias de plugins es mediante alias:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="n">plugins</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="n">plugins</span><span class="p">.</span><span class="n">android</span><span class="p">.</span><span class="n">application</span><span class="p">)</span> <span class="n">apply</span> <span class="k">false</span>
+</span></span><span class="line"><span class="cl">    <span class="n">alias</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="n">plugins</span><span class="p">.</span><span class="n">jetbrains</span><span class="p">.</span><span class="n">kotlin</span><span class="p">.</span><span class="n">android</span><span class="p">)</span> <span class="n">apply</span> <span class="k">false</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="estructura-de-una-dependencia-en-buildgradle-modulo-de-proyecto" class="heading-element"><span>Estructura de una dependencia en build.gradle modulo de proyecto</span>
+  <a href="#estructura-de-una-dependencia-en-buildgradle-modulo-de-proyecto" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">**************************</th>
+<th style="text-align:center">Estructura de alias</th>
+<th style="text-align:center">**************************</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>libs.</strong></td>
+<td style="text-align:center"><strong>plugins.</strong></td>
+<td style="text-align:center"><strong>mi.libreria</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">documento libs.versions.toml</td>
+<td style="text-align:center">bloque de plugins</td>
+<td style="text-align:center">mi-libreria</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Detalle importante, en el documento <code>toml</code> se declaran las dependencias separando los nombres con guiones, <code>mi-libreria</code> y se trasladan al módulo sustituyendo los guiones por puntos <code>mi.libreria</code>, como habrás podido observar.</strong></p>
+</blockquote>
+<h4 id="estructura-de-una-dependencia-en-buildgradle-modulo-de-app" class="heading-element"><span>Estructura de una dependencia en build.gradle modulo de app</span>
+  <a href="#estructura-de-una-dependencia-en-buildgradle-modulo-de-app" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>Por otra parte, el build.gradle del módulo app sigue utilizando implementation, pero en lugar de contener la dependencia ahora contiene una referencia a libs.</p>
+<p>Tomaré el ejemplo de dagger-hilt que he mostrado antes, para mostrar como se vería en el build.gradle del módulo app.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">implementation</span><span class="p">(</span><span class="n">libs</span><span class="p">.</span><span class="n">libraries</span><span class="p">.</span><span class="n">hilt</span><span class="p">.</span><span class="n">android</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="conclusiones" class="heading-element"><span>Conclusiones</span>
+  <a href="#conclusiones" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>Las ventajas de este sistema, en mi opinión son:</p>
+<ul>
+<li>La unificación de todas las dependencias en un solo documento.</li>
+<li>La claridad y limpieza que aporta a ficheros como el <code>build.gradle</code> del módulo app.</li>
+<li>Estructura prácticamente común en ambos módulos a la hora de añadir tanto plugins como librerías.</li>
+</ul>
+<p>Las desventajas son:</p>
+<ul>
+<li>Entra en escena un tercer documento, <em>añadir libs.versions no elimina la labor de tener que referenciar todas y cada una de las dependencias tanto en el módulo de la app, como en el módulo del proyecto.</em></li>
+<li>Adaptarse al nuevo sistema sin tener información de su funcionamiento puede ser complejo para nuevos usuarios.</li>
+</ul>
+<p>Si tenías dudas como yo acerca de este tema, espero haberte ayudado, saludos.</p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Actualizado el 2024-06-09 18:23:39">Actualizado el 2024-06-09&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="Compartir en X" data-sharer="twitter" data-url="http://localhost:1313/posts/6dd8d11/" data-title="Gestión De Dependencias Android" data-hashtags="Android,Desarrollo"><i class="fa-brands fa-x-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Compartir en Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/6dd8d11/" data-hashtag="Android"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Compartir en 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/6dd8d11/" data-title="Gestión De Dependencias Android"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/android/" class="post-tag" title="Etiquetas - Android">Android</a><a href="/tags/desarrollo/" class="post-tag" title="Etiquetas - Desarrollo">Desarrollo</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Regresar</a></span>&nbsp;|&nbsp;<span><a href="/">Inicio</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/05a3ac3/" class="post-nav-item" rel="prev" title="Firejail, La Jaula Para Apps"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Firejail, La Jaula Para Apps</a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="Contenido"><h2 class="toc-title">Contenido&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning"></div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copiar al portapapeles","editLockTitle":"Bloquear bloque de código editable","editUnLockTitle":"Desbloquear bloque de código editable","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"De acuerdo","link":"Aprende más","message":"Este sitio web utiliza Cookies para mejorar su experiencia."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"version":"v0.3.8-RC"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
