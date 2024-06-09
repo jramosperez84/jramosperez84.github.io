@@ -11,7 +11,7 @@
   <meta itemprop="name" content="Gestión de dependencias Android">
   <meta itemprop="datePublished" content="2024-06-09T18:23:39+01:00">
   <meta itemprop="dateModified" content="2024-06-09T18:23:39+01:00">
-  <meta itemprop="wordCount" content="1358">
+  <meta itemprop="wordCount" content="1357">
   <meta itemprop="keywords" content="android"><meta property="og:url" content="http://localhost:1313/posts/6dd8d11/">
   <meta property="og:site_name" content="vm_jorge">
   <meta property="og:title" content="Gestión de dependencias Android">
@@ -37,7 +37,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/6dd8d11\/"
-    },"genre": "posts","keywords": "Android, Desarrollo","wordcount":  1358 ,
+    },"genre": "posts","keywords": "Android, Desarrollo","wordcount":  1357 ,
     "url": "http:\/\/localhost:1313\/posts\/6dd8d11\/","datePublished": "2024-06-09T18:23:39+01:00","dateModified": "2024-06-09T18:23:39+01:00","license": "vm_jorge","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -129,7 +129,7 @@
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span title="" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>Gestión De Dependencias Android</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-      vm_jorge</span></span><span class="post-included-in">&nbsp;incluido en <a href="/categories/android/" class="post-category" title="Categoría - Android"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Android</a>&ensp;<a href="/categories/desarrollo/" class="post-category" title="Categoría - Desarrollo"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Desarrollo</a></span></div><div class="post-meta-line"><span title="publicado el 2024-06-09 18:23:39"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-06-09">2024-06-09</time></span>&nbsp;<span title="1358 palabras"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>Aproximadamente 1400 palabras</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>7 minutos</span>&nbsp;</div>
+      vm_jorge</span></span><span class="post-included-in">&nbsp;incluido en <a href="/categories/android/" class="post-category" title="Categoría - Android"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Android</a>&ensp;<a href="/categories/desarrollo/" class="post-category" title="Categoría - Desarrollo"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Desarrollo</a></span></div><div class="post-meta-line"><span title="publicado el 2024-06-09 18:23:39"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-06-09">2024-06-09</time></span>&nbsp;<span title="1357 palabras"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>Aproximadamente 1400 palabras</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>7 minutos</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>Contenido</span>
@@ -139,7 +139,7 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#mi-historia-y-contexto">Mi historia y contexto</a></li>
+        <li><a href="#historia-y-contexto">Historia y contexto</a></li>
         <li><a href="#primeros-cambios">Primeros cambios</a></li>
         <li><a href="#nuevo-sistema-para-gestionar-dependencias">Nuevo sistema para gestionar dependencias</a>
           <ul>
@@ -160,12 +160,12 @@
     </li>
   </ul>
 </nav></div>
-      </div><div class="content" id="content"><h3 id="mi-historia-y-contexto" class="heading-element"><span>Mi historia y contexto</span>
-  <a href="#mi-historia-y-contexto" class="heading-mark">
+      </div><div class="content" id="content"><p>Hace ya aproximadamente un año que comencé mi aprendizaje en el desarrollo de apps Android nativas, utilizando para ello las herramientas y recursos que propone Google como oficiales. Desde entonces han cambiado distintas cosas, desde el sistema de diseño de UI, hasta el modelo de gestión de dependencias. Este último es en el que he percibido más cambios.</p>
+<h3 id="historia-y-contexto" class="heading-element"><span>Historia y contexto</span>
+  <a href="#historia-y-contexto" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h3><p>Hace ya aproximadamente un año que comencé mi aprendizaje en el desarrollo de apps Android nativas, utilizando para ello las herramientas y recursos que propone Google como oficiales. Desde entonces han cambiado distintas cosas, desde el sistema de diseño de UI, hasta el modelo de gestión de dependencias. Este último es en el que he percibido más cambios.</p>
-<p>Para aquellos que no tengan idea sobre el desarrollo Android, la configuración del proyecto se gestiona con Gradle, esto es quizás lo único que no ha cambiado.
+</h3><p>Para aquellos que <strong>no</strong> tengan idea sobre el desarrollo Android, la configuración del proyecto se gestiona con Gradle, esto es quizás lo único que no ha cambiado.
 En el inicio de mi aprendizaje recuerdo que me tope con un <code>build.gradle</code> escrito en Groovy, muy distinto a lo que se puede ver hoy. Si mal no recuerdo se trataba de una app ToDo o una app para agregar frases y para ello utilicé Java en lugar de Kotlin, y era a este punto donde quería llegar.</p>
 <p>Desde la aparición de Kotlin se ha ido imponiendo el uso del lenguaje en la mayoría de partes de un proyecto, en primer lugar se sustituyo parcialmente el uso de Java en favor de Kotlin, posteriormente se hizo lo mismo con el sistema de vistas XML y el archivo de configuración del proyecto, ambas cosas sustituidas por Jetpack Compose y Kotlin respectivamente.</p>
 <blockquote>
